@@ -1,0 +1,8 @@
+@import 'base.css';
+
+.wrap { width: 100%;}
+.tabs > li {
+	float: left;
+	width: 25%;
+	text-align: center;
+}
