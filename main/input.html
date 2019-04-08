@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<input type="number" id="max-page">
+	<div id="page-init"></div>
+
+	<script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+  crossorigin="anonymous"></script>
+
+  <script>
+
+  $('#max-page').change(function(){
+	var maxPage = $('#max-page').val();
+
+	for (var i = 0; i < maxPage; i++){
+		$('#page-init').append("<p>오된다!"+(i+1)+"</p>");
+	}
+  });
+
+
+
+  </script>
+</body>
+</html>
