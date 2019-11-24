@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script>
+		//생성자 (constructor)
+		function Person (username, age){
+			this.username = username;
+			this.age = age;
+			this.introduce = function (){
+				console.log('내 이름은 ' + this.username + '이고 나이는 ' + this.age + '이야');
+			}
+		}
+
+		var p1 = new Person('동범', 36);
+		var p2 = new Person('아름', 34);
+
+
+		//인스턴스 (instance)
+		p1.introduce();
+		p2.introduce();
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
