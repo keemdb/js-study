@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		.black {
+			background-color: #ccc;
+		}
+	</style>
+</head>
+<body>
+
+	<h1 id="main-title">제목이다</h1>
+	<ul id="ul">
+		<li class="list">리스트1</li>
+		<li class="list">리스트2</li>
+		<li class="list"><a href="http://google.com">리스트3</a></li>
+	</ul>
+
+	<button class="btn">버튼 클릭!</button>
+	<script>
+		var title = document.querySelector('#ul');
+		var list = document.querySelector('.list a');
+		var listelem = document.createElement('li');
+		var mainTitle = document.querySelector('#main-title');
+		var btn = document.querySelector('.btn');
+
+		console.log(list.getAttribute('href'));
+		list.setAttribute('href','http://naver.com');
+		console.log(list.getAttribute('href'));
+		console.log(title.getAttribute('class'));
+		title.setAttribute('class','more');
+		console.log(title.classList.contains('list'));
+		console.log(listelem);
+		listelem.innerHTML = '<span>푸르게</span>';
+		console.log(listelem);
+		title.appendChild(listelem);
+
+		function btnColor (){
+			mainTitle.style.background = 'dodgerblue';
+		}
+
+		btn.addEventListener('click', btnColor);
+
+		
+	</script>
+</body>
+</html>
