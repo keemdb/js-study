@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<div class="timestamp">
+		<span>9:14</span><br>
+		<span>9:26</span><br>
+		<span>7:04</span><br>
+		<span>2:06</span><br>
+		<span>3:09</span><br>
+	</div>
+	<script>
+		var times = document.querySelectorAll('.timestamp span');
+		var duration = 0;
+		for(var i=0; i < times.length; i++){
+			var t = times[i];
+			t = t.innerText;
+			t = t.split(':');
+			min = t[0];
+			sec = t[1];
+			duration = duration + parseInt(sec) + parseInt(min*60);
+			console.log(duration/60)
+		}
+	</script>
+</body>
+</html>

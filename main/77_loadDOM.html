@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script>
+		// 기본적으로 스크립트가 헤드에 있으면 해당 DOM을 로드 못함
+		// var t = document.getElementById('target');
+		// console.log(t);
+
+		//미리 페이지를 로드 해서 불러오는 함수 1
+		window.onload = function(){
+			var t = document.getElementById('target');
+			console.log(t);
+		}
+
+		//미리 페이지를 로드 해서 불러오는 함수 2
+		//addEventListener를 이용하여 불러오는 함수. 단점은 이미지나 기타 데이터도 모두 로드되기때문에 페이지 로드가 느려질 가능성이 있음
+		window.addEventListener('load', function(){
+			var t = document.getElementById('target');
+			console.log(t);
+		}); 
+
+		//미리 페이지를 로드 해서 불러오는 함수 3
+		//DOMContentLoaded를 사용하면 DOM객체만 우선적으로 불러와 스크립트를 읽는다. 이미지나 기타 무거운 데이터는 추후에 불러와서 빠른 처리 가능
+		window.addEventListener('DOMContentLoaded', function(){ 
+			var t = document.getElementById('target');
+			console.log(t);
+		}); 
+	</script>
+</head>
+<body>
+	<input id="target" type="text">
+	<img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png">
+</body>
+</html>

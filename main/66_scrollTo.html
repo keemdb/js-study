@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		#sec1 {
+			background-color: goldenrod;
+			color: #fff;
+			height: 1000px;
+		}
+		#sec2 {
+			background-color: darkcyan;
+			color: #fff;
+			height: 3000px;
+		}
+	</style>
+</head>
+<body>
+	<section id="sec1">
+		<span>sec1</span><br>
+		<input type="button" id="btn" value="section 2로 이동">
+	</section>
+	<section id="sec2">sec2</section>
+	<script>
+		var btn = document.getElementById('btn');
+		btn.addEventListener('click', function(){
+			window.scrollTo(0,1000);
+		});
+	</script>
+</body>
+</html>
