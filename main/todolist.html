@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="https://kit.fontawesome.com/cee3b48567.js" crossorigin="anonymous"></script>
+</head>
+<body>
+	<h1>Ultralight Packs</h1>
+	<h3>New Category</h3>
+	<ul class="categories">
+		<li class="category">
+			<ul class="items">
+				<li class="itemsHeader">
+					<input type="text" placeholder="카테고리 이름">
+					<span class="weightCell">무게</span>
+					<span class="qtyCell">수량</span>
+				</li>
+				<li class="item">
+					<input type="name" placeholder="Name" class="name">
+					<input type="name" placeholder="Description" class="description">
+					<span class="actonsCell">
+						<i class="fas fa-camera"></i>
+						<i class="fas fa-link"></i>
+						<i class="fas fa-tshirt"></i>
+						<i class="fas fa-utensils"></i>
+						<i class="fas fa-star"></i>
+					</span>
+					<span class="weightCell">
+						<input type="text" class="weight">
+						<div class="unitSelect">
+							<select name="unit">
+								<option value="g">g</option>
+								<option value="kg">kg</option>
+								<option value="oz">oz</option>
+								<option value="lb">lb</option>
+							</select>
+						</div>
+					</span>
+					<span class="qtyCell">
+						<input type="text" class="qty">
+						<span class="arrows">
+							<i class="fas fa-sort-up arrowUp"></i>
+							<i class="fas fa-sort-down arrowDown"></i>
+						</span>
+					</span>
+					<span class="removeCell">
+						<a title="이 아이템을 삭제합니다." class="removeItem">
+							<i class="fas fa-trash-alt"></i>
+						</a>
+					</span>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	<script src="../js/todolist.js"></script>
+</body>
+</html>
