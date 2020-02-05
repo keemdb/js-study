@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>drag & drop test</title>
+
+	<style>
+		#content {
+			height: 400px;
+		}
+		#makeMeDraggable {
+			width: 200px;
+			height: 80px;
+			border-radius: 10px;
+			background-color: burlywood;
+		}
+		#draggableHelper {
+			width: 200px;
+			height: 80px;
+			border-radius: 10px;
+			background-color: chocolate;
+		}
+		#makeMeDraggable span {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			font-size: 2em;
+			font-weight: bold;
+		}
+		#makeMeDroppable {
+			width: 200px;
+			height: 80px;
+			border : 1px solid #999;
+			border-radius: 10px;
+		}
+	</style>
+
+	<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+</head>
+<body>
+	<div id="content">
+		<div id="makeMeDraggable"></div>	
+		<div id="makeMeDroppable"></div>
+	</div>
+
+	<script>
+		var card = new Array();
+		card = [
+			'card 1', 
+			'card 2', 
+			'card 3', 
+		];
+
+		$(init);
+
+		function init(){
+			$('#makeMeDraggable').draggable();
+			$('#makeMeDroppable').droppable({
+				drop: handleDropEvent
+			});
+		}
+
+		function myHelper(event){
+			return '<div id="draggableHelper">'+card[0]+'</div>';
+		}
+
+		function handleDragStop(event, ui){
+			var offsetXpos = parseInt(ui.offset.left);
+			var offsetYpos = parseInt(ui.offset.top);
+			alert( "Drag stopped!nnOffset: (" + offsetXpos + ", " + offsetYpos + ")n");
+		}
+
+		function handleDropEvent(event, ui){
+			var draggable = ui.draggable;
+			alert( 'The square with ID "' + draggable.attr('id') + '" was dropped onto me!' );
+		}
+
+	</script>
+</body>
+</html>
