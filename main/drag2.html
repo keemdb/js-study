@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>drag & drop test3</title>
+
+	<style>
+
+
+		/* Main content area */
+
+		#content {
+			text-align: center;
+			-moz-user-select: none;
+			-webkit-user-select: none;
+			user-select: none;
+		}
+
+		/* Header/footer boxes */
+
+		.wideBox {
+			clear: both;
+			text-align: center;
+			margin: 70px;
+			padding: 10px;
+			background: #ebedf2;
+			border: 1px solid #333;
+		}
+
+		.wideBox h1 {
+			font-weight: bold;
+			margin: 20px;
+			color: #666;
+			font-size: 1.5em;
+		}
+
+		/* Slots for final card positions */
+
+		#cardSlots, #cardPile {
+			width: 730px;
+			height: 120px;
+		}
+
+		/* Individual cards and slots */
+
+		#cardSlots div, #cardPile div {
+			float: left;
+			width: 118px;
+			height: 62px;
+			padding: 10px;
+			border-radius: 10px;
+			margin: 0 0 0 10px;
+			background: #fff;
+		}
+
+		#cardSlots div:first-child, #cardPile div:first-child {
+			margin-left: 0;
+		}
+
+		#cardSlots div.hovered {
+			background: #aaa;
+		}
+
+		#cardSlots div {
+			background-color: #a6a6a6;
+			color: #fff;
+			font-size: 44px;
+			font-weight: bold;
+		}
+
+		#cardPile div {
+		background: #f29c02;
+		color: #fff;
+		font-weight: bold;
+		}
+
+		#cardPile div.ui-draggable-dragging {
+		-moz-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
+		-webkit-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
+		box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
+		}
+
+
+		/* 정답배치시 배경처리 */
+		/* #card1.correct { background: red; }
+		#card2.correct { background: brown; }
+		#card3.correct { background: orange; }
+		#card4.correct { background: yellow; }
+		#card5.correct { background: green; }
+		#card6.correct { background: cyan; }
+		#card7.correct { background: blue; }
+		#card8.correct { background: indigo; }
+		#card9.correct { background: purple; }
+		#card10.correct { background: violet; } */
+
+
+		/* "You did it!" message */
+		#successMessage {
+			position: absolute;
+			left: 580px;
+			top: 250px;
+			width: 0;
+			height: 0;
+			z-index: 100;
+			background: #333;
+			color: #fff;
+			border-radius: 10px;
+			padding: 20px;
+		}
+
+	</style>
+
+	<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+</head>
+<body>
+	<div id="content">
+		<div id="cardPile"></div>	
+		<div id="cardSlots"></div>
+	</div>
+
+	<div id="successMessage">
+		<h2>정답!!</h2>
+		<button onclick="init();">다시 풀기</button>
+	</div>
+
+	<script>
+		var ans = 5; //정답 개수
+		var resultArr = [ 
+				'File > Place옵션 Template 선택 후 Place',
+				'캐릭터를 그릴 순서 확인',
+				'File > New 새 문서 만들기',
+				'제일 앞쪽에 있는 부분부터 채색하기',
+				'제일 뒤쪽에 놓인 부분부터 그리기'
+			]; //보기 입력
+		var correctCards = 0;
+
+		$(init);
+
+		function init(){
+			//정답 메세지 숨김
+			$('#successMessage').hide();
+			$('#successMessage').css({
+				left: '580px',
+				top: '250px',
+				width: 0,
+				height: 0
+			});
+
+			//초기화
+			correctCards = 0;
+			$('#cardPile').html('');
+			$('#cardSlots').html('');
+
+			var numbers = [ 2, 3, 1, 5, 4]; //정답
+			var resultArr = [ 
+				'File > Place옵션 Template 선택 후 Place',
+				'캐릭터를 그릴 순서 확인',
+				'File > New 새 문서 만들기',
+				'제일 앞쪽에 있는 부분부터 채색하기',
+				'제일 뒤쪽에 놓인 부분부터 그리기'
+			]; //보기 입력
+
+			//보기를 셔플해줌
+			//numbers.sort(function(){
+			//	return Math.random() - .5
+			//});
+
+			for (var i=0; i<ans; i++){
+				$('<div>'+resultArr[i]+'</div>').data('number', numbers[i]).attr('id', 'card'+numbers[i]).appendTo('#cardPile').draggable({
+					containment: '#content',
+					stack: '#cardPile div',
+					cursor: 'move',
+					revert: true
+				});
+			}
+
+			var words = [
+				'?',
+				'?',
+				'?',
+				'?',
+				'?'
+			];
+
+			for (var i=1; i<=ans; i++){
+				$('<div>'+words[i-1]+'</div>').data('number', i).appendTo('#cardSlots').droppable({
+					accept: '#cardPile div',
+					hoverClass: 'hovered',
+					drop: handleCardDrop
+				});
+			}
+		}
+
+		function handleCardDrop(event, ui){
+			var slotNumber = $(this).data('number');
+			var cardNumber = ui.draggable.data('number');
+
+			//정답일 경우 색상이 변경되며 슬롯에 배치됨
+
+			if(slotNumber == cardNumber){
+				ui.draggable.addClass('correct');
+				ui.draggable.draggable('disable');
+				$(this).droppable('disable');
+				ui.draggable.position({
+					of: $(this),
+					my: 'left top',
+					at: 'left top'
+				});
+				ui.draggable.draggable( 'option', 'revert', false );
+				correctCards++;
+			}
+
+			//모든 카드가 정답일 경우 메시지 표시, 다른카드로 재설정
+			if ( correctCards == ans ) {
+				$('#successMessage').show();
+				$('#successMessage').animate( {
+				left: '380px',
+				top: '200px',
+				width: '400px',
+				height: '100px',
+				opacity: 1
+				} );
+  			}
+
+		}
+	</script>
+</body>
+</html>
