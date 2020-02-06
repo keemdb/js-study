@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<div id="test"></div>
+	<script>
+	function quizFnc(){
+
+		var quizdata = {};
+		quizdata.data = {
+			1:{
+				type:"start"
+			},
+			2:{
+				type:"quizOx1",
+				title:"sadfsadf",
+				answer:"o",
+				result:null
+			},
+			3:{
+				type:"quizOx2",
+				title:"sadfsadf",
+				answer:"o",
+				result:null
+			},
+			4:{
+				type:"quizOx3",
+				title:"sadfsadf",
+				answer:"o",
+				result:null
+			},
+			5:{
+				type:"end"
+			}
+		};
+		quizdata.nowpage = 1;
+		quizdata.result = [];
+
+		quizdata.setQuizPage = function(){			
+			document.getElementById("test").innerHTML = quizdata.data[quizdata.nowpage].type;
+		}
+
+		quizdata.pageCh = function (num){
+			quizdata.nowpage = num;
+			quizdata.setQuizPage();
+		}
+
+		return quizdata;
+
+	}
+
+	var quiz = new quizFnc();	
+	quiz.setQuizPage();
+	console.log(quiz)
+	</script>
+</body>
+</html>
