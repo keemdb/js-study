@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function quizFuc(){
+			var quizData = {};
+			quizData.data = {
+				1:{
+					type:'start'
+				},
+				2:{
+					type:'quiz1'
+				},
+				3:{
+					type:'quiz2'
+				},
+				4:{
+					type:'quiz3'
+				},
+				5:{
+					type:'endPage'
+				}
+			}
+
+			return quizData;
+		}
+
+		console.log(quizFuc);
+	</script>
+</body>
+</html>
